@@ -120,7 +120,15 @@ instances of the hinted class passed. This works for constructors as well.
 
 ### Injecting Dependencies in Shells
 
-Shells are also able to receive dependencies via the `@Inject` annotation:
+Shells are also able to receive dependencies via the `@Inject` annotation. But first, you need
+to change the cake console executable to use PipingBag. Open your `bin/cake.php` file and make
+it look like this:
+
+    // bin/cake.php
+   ...
+   exit(PipingBag\Console\ShellDispatcher::run($argv)); // Changed namespace of ShellDispatcher
+
+Then you can apply annotations to your shells:
 
 ```php
 
