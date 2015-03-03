@@ -124,9 +124,11 @@ Shells are also able to receive dependencies via the `@Inject` annotation. But f
 to change the cake console executable to use PipingBag. Open your `bin/cake.php` file and make
 it look like this:
 
+```bash
     // bin/cake.php
-   ...
-   exit(PipingBag\Console\ShellDispatcher::run($argv)); // Changed namespace of ShellDispatcher
+    ...
+    exit(PipingBag\Console\ShellDispatcher::run($argv)); // Changed namespace of ShellDispatcher
+```
 
 Then you can apply annotations to your shells:
 
