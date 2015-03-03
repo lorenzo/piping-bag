@@ -3,7 +3,7 @@
 	"description": "CakePHP 3 plugin for using Ray.Di as a Dependency Injection Container",
 	"type": "cakephp-plugin",
 	"require": {
-		"ray/di": "~1.4",
+		"ray/di": "~2.0",
 		"cakephp/debug_kit": "3.0.*-dev"
 	},
 	"license": "MIT",
