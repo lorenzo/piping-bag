@@ -15,11 +15,15 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"PipingBag\\": "src"
+			"PipingBag\\": "src",
+			"PipingBag\\Test\\": "tests"
 		}
 	},
 	"extra": {
 		"installer-name": "PipingBag"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "*"
 	},
 	"minimum-stability": "dev"
 }

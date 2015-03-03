@@ -4,7 +4,6 @@ namespace PipingBag\Di;
 
 use Cake\Core\App;
 use InvalidArgumentException;
-use PipingBag\Cache\CacheAdapter;
 use Ray\Di\AbstractModule;
 use Ray\Di\Injector;
 
@@ -26,9 +25,6 @@ class PipingBag {
  * @return Injector
  */
 	public static function create($modules = [], $cacheConfig = 'default') {
-		$cacheConfig;
-		$cache = $cacheConfig ? new CacheAdapter($cacheConfig) : null;
-
 		if (is_callable($modules)) {
 			$modules = (array)$modules();
 		}
@@ -47,7 +43,7 @@ class PipingBag {
 			return new $class;
 		}, $modules);
 
-		$injector = Injector::create($modules, $cache, TMP);
+		$injector = new Injector();
 
 		if (empty(static::$_instance)) {
 			static::container($injector);
