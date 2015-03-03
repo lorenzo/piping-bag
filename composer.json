@@ -20,5 +20,8 @@
 	"scripts": {
 		"post-install-cmd": "PipingBag\\Console\\Installer::postInstall"
 	},
+	"extra": {
+		"installer-name": "PipingBag"
+	},
 	"minimum-stability": "dev"
 }
