@@ -4,6 +4,7 @@ namespace PipingBag\Di;
 
 use Cake\Core\App;
 use InvalidArgumentException;
+use PipingBag\Module\DefaultModule;
 use Ray\Di\AbstractModule;
 use Ray\Di\Injector;
 
@@ -29,21 +30,8 @@ class PipingBag {
 			$modules = (array)$modules();
 		}
 
-		$modules = array_map(function($module) {
-			if (!is_string($module)) {
-				return $module;
-			}
-
-			$class = App::classname($module, 'Di/Module');
-
-			if (!$class) {
-				throw new InvalidArgumentException('Invalid Di module name: ' . $module);
-			}
-
-			return new $class;
-		}, $modules);
-
-		$injector = new Injector();
+		$modules = new DefaultModule($modules);
+		$injector = new Injector($modules);
 
 		if (empty(static::$_instance)) {
 			static::container($injector);

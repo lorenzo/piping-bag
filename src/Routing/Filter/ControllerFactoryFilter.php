@@ -5,8 +5,10 @@ use Cake\Core\App;
 use Cake\Event\Event;
 use Cake\Routing\DispatcherFilter;
 use Cake\Utility\Inflector;
+use PipingBag\Module\DefaultModule;
 use PipingBag\Module\HttpModule;
-use Ray\Di\Injector;
+use Ray\Di\InjectorInterface;
+use Ray\Di\Di\Inject;
 
 /**
  * A dispatcher filter that builds the controller to dispatch
@@ -27,19 +29,27 @@ class ControllerFactoryFilter extends DispatcherFilter {
 /**
  * The injector instance
  *
- * @var Ray\Di\Injector
+ * @var Ray\Di\InjectorInterface
  */
 	protected $_injector;
 
 /**
  * Constructor.
  *
- * @param Ray\Di\Injector $injector the Injector instance
+ * @param Ray\Di\InjectorInterface $injector the Injector instance
+ * @param PipingBag\Module\DefaultModule $module The bindings container
  */
-	public function __construct(Injector $injector, $config = []) {
+	public function __construct(InjectorInterface $injector, $config = []) {
 		parent::__construct($config);
 		$this->_injector = $injector;
-	}
+    }
+
+/**
+ * @Inject
+ */
+    public function setModule(DefaultModule $module) {
+        $this->_module = $module;
+    }
 
 /**
  * Resolve the request parameters into a controller and attach the controller
@@ -83,7 +93,7 @@ class ControllerFactoryFilter extends DispatcherFilter {
 			return false;
 		}
 
-		$this->_injector->getModule()->install(new HttpModule($className, $request, $response));
+		$this->_module->add(new HttpModule($className, $request, $response));
 		return $this->_injector->getInstance($className);
 	}
 
