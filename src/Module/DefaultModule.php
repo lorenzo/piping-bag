@@ -15,7 +15,7 @@ class DefaultModule extends AbstractModule {
 		parent::__construct();
 	}
 
-	public function configure() {
+	protected function configure() {
 	    array_map(function($module) {
 			if (!is_string($module)) {
 				return $module;

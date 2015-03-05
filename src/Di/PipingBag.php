@@ -22,16 +22,15 @@ class PipingBag {
  *
  * @param array|callable $modules A list of modules to be installed. Or a callable
  * that will return the list of modules.
- * @param string $cacheConfig The name of the cache config to use.
  * @return Injector
  */
-	public static function create($modules = [], $cacheConfig = 'default') {
+	public static function create($modules = []) {
 		if (is_callable($modules)) {
 			$modules = (array)$modules();
 		}
 
 		$modules = new DefaultModule($modules);
-		$injector = new Injector($modules);
+		$injector = new Injector($defaultModule);
 
 		if (empty(static::$_instance)) {
 			static::container($injector);

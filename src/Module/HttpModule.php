@@ -22,8 +22,8 @@ class HttpModule extends AbstractModule {
 	}
 
 	public function configure() {
-        $this->bind(Request::class)->toInstance($this->_request);
-        $this->bind(Response::class)->toInstance($this->_response);
+        $this->bind('Cake\Network\Request')->toInstance($this->_request);
+        $this->bind('Cake\Network\Response')->toInstance($this->_response);
         $this->bind($this->_class)->toConstructor($this->_class, 'request,response');
 	}
 
