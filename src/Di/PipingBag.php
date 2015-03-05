@@ -7,6 +7,7 @@ use InvalidArgumentException;
 use PipingBag\Module\DefaultModule;
 use Ray\Di\AbstractModule;
 use Ray\Di\Injector;
+use Ray\Di\Name;
 
 class PipingBag {
 
@@ -30,7 +31,7 @@ class PipingBag {
 		}
 
 		$modules = new DefaultModule($modules);
-		$injector = new Injector($defaultModule);
+		$injector = new Injector($modules);
 
 		if (empty(static::$_instance)) {
 			static::container($injector);
@@ -56,21 +57,11 @@ class PipingBag {
  * Return an instance of a class after resolving its dependencies.
  *
  * @param $class The class name or interface name to load.
- * @return mixed
- */
-	public static function get($class) {
-		return static::container()->getInstance($class);
-	}
-
-/**
- * Return an instance of a class by a name after resolving its dependencies.
- *
- * @param $class The class name or interface name to load.
  * @param $name The alias given to this class for namespacing the configuration.
  * @return mixed
  */
-	public static function getNamed($class, $name = AbstractModule::NAME_UNSPECIFIED) {
-		return static::container()->getNamedInstance($class, $name);
+	public static function get($class, $name = Name::ANY) {
+		return static::container()->getInstance($class, $name);
 	}
 
 }
