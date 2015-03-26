@@ -2,29 +2,26 @@
 
 namespace PipingBag\Module;
 
-use Cake\Network\Request;
-use Cake\Network\Response;
 use Ray\Di\AbstractModule;
 
-class HttpModule extends AbstractModule {
+class HttpModule extends AbstractModule
+{
 
-	protected $_class;
+    public function configure()
+    {
+        $this->bind('Cake\Network\Request')
+            ->annotatedWith('current')
+            ->toProvider('PipingBag\Provider\RequestProvider');
 
-	protected $_request;
+        $this->bind('Cake\Network\Response')
+            ->annotatedWith('current')
+            ->toProvider('PipingBag\Provider\ResponseProvider');
 
-	protected $_response;
+        $this->bind('Cake\Controller\Controller')
+            ->annotatedWith('current')
+            ->toProvider('PipingBag\Provider\ControllerProvider');
 
-	public function __construct($class, Request $request, Response $response) {
-		$this->_class = $class;
-		$this->_request = $request;
-		$this->_response = $response;
-		parent::__construct();
-	}
-
-	public function configure() {
-        $this->bind('Cake\Network\Request')->toInstance($this->_request);
-        $this->bind('Cake\Network\Response')->toInstance($this->_response);
-        $this->bind($this->_class)->toConstructor($this->_class, 'request,response');
+        $this->bind('PipingBag\Routing\Filter\ControllerFactoryFilter');
 	}
 
 }

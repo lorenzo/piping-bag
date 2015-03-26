@@ -16,6 +16,9 @@ class DefaultModule extends AbstractModule {
 	}
 
 	protected function configure() {
+        $this->bind('Cake\Event\EventManager');
+        $this->install(new HttpModule);
+
 	    array_map(function($module) {
 			if (!is_string($module)) {
 				return $module;
@@ -29,8 +32,6 @@ class DefaultModule extends AbstractModule {
 
 			$this->install(new $class);
 		}, $this->_configuration);
-
-        $this->bind(__CLASS__)->toInstance($this);
 	}
 
     public function add($foo) {
