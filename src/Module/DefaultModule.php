@@ -5,6 +5,7 @@ namespace PipingBag\Module;
 use Cake\Network\Request;
 use Cake\Network\Response;
 use Ray\Di\AbstractModule;
+use Cake\Core\App;
 
 class DefaultModule extends AbstractModule {
 
