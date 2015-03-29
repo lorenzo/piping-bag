@@ -10,6 +10,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 namespace PipingBag\Test\Di;
+
 use Cake\TestSuite\TestCase;
 use PipingBag\Di\PipingBag;
 
@@ -20,7 +21,8 @@ use PipingBag\Di\PipingBag;
 class PipingBagTest extends TestCase
 {
 
-    public function testCreate() {
+    public function testCreate()
+    {
         PipingBag::create();
         debug('a');
     }
