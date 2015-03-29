@@ -11,11 +11,13 @@ class RequestProvider implements ProviderInterface
 
     protected static $request;
 
-    public function get() {
+    public function get()
+    {
         return static::$request;
     }
 
-    public static function set(Request $r) {
+    public static function set(Request $r)
+    {
         return static::$request = $r;
     }
 }

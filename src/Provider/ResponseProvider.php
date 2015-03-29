@@ -11,12 +11,13 @@ class ResponseProvider implements ProviderInterface
 
     protected static $response;
 
-    public function get() {
+    public function get()
+    {
         return static::$response;
     }
 
-    public static function set(Response $r) {
+    public static function set(Response $r)
+    {
         return static::$response = $r;
     }
-
 }
