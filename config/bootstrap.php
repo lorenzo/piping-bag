@@ -14,6 +14,7 @@ AnnotationReader::addGlobalIgnoredName('triggers');
 $instance = Cache::remember('pipingbag.instance', function () use ($modules) {
     return PipingBag::create($modules);
 }, $cache);
+PipingBag::container($instance);
 
 DispatcherFactory::add(
     $instance->getInstance('PipingBag\Routing\Filter\ControllerFactoryFilter')
