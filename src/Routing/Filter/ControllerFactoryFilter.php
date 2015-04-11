@@ -26,7 +26,7 @@ class ControllerFactoryFilter extends DispatcherFilter
      *
      * @var int
      */
-    protected $priority = 49;
+    protected $priority = 50;
 
     /**
      * The injector instance

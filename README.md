@@ -26,6 +26,20 @@ You will need to add the following line to your application's bootstrap.php file
 Plugin::load('PipingBag', ['bootstrap' => true]);
 ```
 
+For getting injection in your controllers to work you need to to replace the following line in your
+`config/bootstrap.php`:
+
+```php
+DispatcherFactory::add('ControllerFactory');
+```
+
+With the following:
+
+```php
+use PipingBag\Di\PipingBag;
+DispatcherFactory::add(PipingBag::get('PipingBag\Routing\Filter\ControllerFactoryFilter'));
+```
+
 Additionally, you can configure the modules to be used and caching options in your `config/app.php` file.
 
 ```php
