@@ -21,8 +21,6 @@ class DefaultModule extends AbstractModule
     protected function configure()
     {
         $this->bind('Cake\Event\EventManager');
-        $this->install(new HttpModule);
-
         array_map(function ($module) {
             if (!is_string($module)) {
                 return $module;

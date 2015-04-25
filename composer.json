@@ -1,29 +1,35 @@
 {
-	"name": "lorenzo/piping-bag",
-	"description": "CakePHP 3 plugin for using Ray.Di as a Dependency Injection Container",
-	"type": "cakephp-plugin",
-	"require": {
-		"ray/di": "*",
-		"cakephp/debug_kit": "~3.0"
-	},
-	"license": "MIT",
-	"authors": [
-		{
-		"name": "Jose Lorenzo Rodriguez",
-		"email": "jose.zap@gmail.com"
-	}
-	],
-	"autoload": {
-		"psr-4": {
-			"PipingBag\\": "src",
-			"PipingBag\\Test\\": "tests"
-		}
-	},
-	"extra": {
-		"installer-name": "PipingBag"
-	},
-	"require-dev": {
-		"phpunit/phpunit": "*"
-	},
-	"minimum-stability": "dev"
+    "name": "lorenzo/piping-bag",
+    "description": "CakePHP 3 plugin for using Ray.Di as a Dependency Injection Container",
+    "type": "cakephp-plugin",
+    "repositories": [
+        {
+        "type": "vcs",
+        "url": "https://github.com/koriym/Ray.Di.git"
+    }
+    ],
+    "require": {
+        "cakephp/debug_kit": "~3.0",
+        "ray/di": "dev-compiler"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+        "name": "Jose Lorenzo Rodriguez",
+        "email": "jose.zap@gmail.com"
+    }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PipingBag\\": "src",
+            "PipingBag\\Test\\": "tests"
+        }
+    },
+    "extra": {
+        "installer-name": "PipingBag"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "minimum-stability": "dev"
 }

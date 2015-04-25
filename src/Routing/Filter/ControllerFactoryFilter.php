@@ -5,11 +5,9 @@ use Cake\Core\App;
 use Cake\Event\Event;
 use Cake\Routing\DispatcherFilter;
 use Cake\Utility\Inflector;
-use PipingBag\Provider\ControllerProvider;
-use PipingBag\Provider\RequestProvider;
-use PipingBag\Provider\ResponseProvider;
-use Ray\Di\Di\Inject;
-use Ray\Di\InjectorInterface;
+use Cake\Routing\Filter\ControllerFactoryFilter as ParentFactory;
+use PipingBag\Module\HttpModule;
+use PipingBag\Di\PipingBag;
 
 /**
  * A dispatcher filter that builds the controller to dispatch
@@ -18,7 +16,7 @@ use Ray\Di\InjectorInterface;
  * This filter resolves the request parameters into a controller
  * instance and attaches it to the event object.
  */
-class ControllerFactoryFilter extends DispatcherFilter
+class ControllerFactoryFilter extends ParentFactory
 {
 
     /**
@@ -27,42 +25,6 @@ class ControllerFactoryFilter extends DispatcherFilter
      * @var int
      */
     protected $priority = 50;
-
-    /**
-     * The injector instance
-     *
-     * @var Ray\Di\InjectorInterface
-     */
-    protected $injector;
-
-    /**
-     * Constructor.
-     *
-     * @param Ray\Di\InjectorInterface $injector the Injector instance
-     * @param PipingBag\Module\DefaultModule $module The bindings container
-     */
-    public function __construct(InjectorInterface $injector, $config = [])
-    {
-        parent::__construct($config);
-        $this->injector = $injector;
-    }
-
-    /**
-     * Resolve the request parameters into a controller and attach the controller
-     * to the event object.
-     *
-     * @param \Cake\Event\Event $event The event instance.
-     * @return void
-     */
-    public function beforeDispatch(Event $event)
-    {
-        $request = $event->data['request'];
-        $response = $event->data['response'];
-
-        RequestProvider::set($request);
-        ResponseProvider::set($response);
-        $event->data['controller'] = $this->getController($request, $response);
-    }
 
     /**
      * Get controller to use, either plugin controller or application controller
@@ -78,6 +40,11 @@ class ControllerFactoryFilter extends DispatcherFilter
         if (!empty($request->params['plugin'])) {
             $pluginPath = $request->params['plugin'] . '.';
         }
+
+        if ($pluginPath) {
+            return parent::getController($request, $response);
+        }
+
         if (!empty($request->params['controller'])) {
             $controller = $request->params['controller'];
         }
@@ -93,7 +60,9 @@ class ControllerFactoryFilter extends DispatcherFilter
             return false;
         }
 
-        ControllerProvider::set($className);
-        return $this->injector->getInstance('Cake\Controller\Controller', 'current');
+        $controller = PipingBag::get($className);
+        $controller->setRequest($request);
+        $controller->response = $response;
+        return $controller;
     }
 }

@@ -5,8 +5,11 @@ namespace PipingBag\Di;
 use Cake\Core\App;
 use PipingBag\Module\DefaultModule;
 use Ray\Di\AbstractModule;
-use Ray\Di\Injector;
+use Ray\Di\DiCompiler;
+use Ray\Di\InjectorInterface;
 use Ray\Di\Name;
+use Ray\Di\ScriptInjector;
+use Ray\Di\Exception\NotCompiled;
 
 class PipingBag
 {
@@ -17,6 +20,8 @@ class PipingBag
      * @var Injector
      */
     protected static $instance;
+
+    protected static $modules;
 
     /**
      * Creates a new injector instance
@@ -32,10 +37,13 @@ class PipingBag
         }
 
         $modules = new DefaultModule($modules);
-        $injector = new Injector($modules);
 
         if (empty(static::$instance)) {
+            $injector = new ScriptInjector(TMP);
             static::container($injector);
+            self::$modules = $modules;
+        } else {
+            $injector = new Injector($modules);
         }
 
         return $injector;
@@ -47,7 +55,7 @@ class PipingBag
      * @param Injector $instance The injector to be used.
      * @return Injector
      */
-    public static function container(Injector $instance = null)
+    public static function container(InjectorInterface $instance = null)
     {
         if ($instance !== null) {
             static::$instance = $instance;
@@ -64,6 +72,12 @@ class PipingBag
      */
     public static function get($class, $name = Name::ANY)
     {
-        return static::container()->getInstance($class, $name);
+        try {
+            return static::container()->getInstance($class, $name);
+        } catch (NotCompiled $e) {
+           $compiler = new DiCompiler(self::$modules, TMP);
+           $compiler->compile();
+           return $compiler->getInstance($class, $name);
+        }
     }
 }
