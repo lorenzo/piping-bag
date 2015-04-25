@@ -9,6 +9,7 @@ use Ray\Di\DiCompiler;
 use Ray\Di\InjectorInterface;
 use Ray\Di\Name;
 use Ray\Di\ScriptInjector;
+use Ray\Di\Injector;
 use Ray\Di\Exception\NotCompiled;
 
 class PipingBag
