@@ -17,10 +17,16 @@ class PipingBag
     /**
      * The current injector instance
      *
-     * @var Injector
+     * @var InjectorInterface
      */
     protected static $instance;
 
+
+    /**
+     * The modules collection to install in the injector
+     *
+     * @var DefaultModule
+     */
     protected static $modules;
 
     /**

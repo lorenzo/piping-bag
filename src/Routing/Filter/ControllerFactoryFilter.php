@@ -33,7 +33,7 @@ class ControllerFactoryFilter extends ParentFactory
      * @param \Cake\Network\Response $response Response for the controller.
      * @return mixed name of controller if not loaded, or object if loaded
      */
-    protected function getController($request, $response)
+    protected function _getController($request, $response)
     {
         $pluginPath = $controller = null;
         $namespace = 'Controller';
@@ -42,7 +42,7 @@ class ControllerFactoryFilter extends ParentFactory
         }
 
         if ($pluginPath) {
-            return parent::getController($request, $response);
+            return parent::_getController($request, $response);
         }
 
         if (!empty($request->params['controller'])) {

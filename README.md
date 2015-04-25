@@ -36,8 +36,7 @@ DispatcherFactory::add('ControllerFactory');
 With the following:
 
 ```php
-use PipingBag\Di\PipingBag;
-DispatcherFactory::add(PipingBag::get('PipingBag\Routing\Filter\ControllerFactoryFilter'));
+DispatcherFactory::add('PipingBag\Routing\Filter\ControllerFactoryFilter');
 ```
 
 Additionally, you can configure the modules to be used and caching options in your `config/app.php` file.
