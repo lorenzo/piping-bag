@@ -131,10 +131,10 @@ class ArticlesController extends AppController
 As soon as the controller is created, all methods having the `@Inject` annotation will get
 instances of the hinted class passed. This works for constructors as well.
 
-### Injecting Dependencies in Controlelr Actions
+### Injecting Dependencies in Controller Actions
 
 It is also possible to inject dependencies directly in the controller actions. When doing this,
-add the typehinted dependency to the end of the arguments and set the default value to `null`,
+add the type-hinted dependency to the end of the arguments and set the default value to `null`,
 it is also required to annotate the method using `@Assisted`
 
 ```php
