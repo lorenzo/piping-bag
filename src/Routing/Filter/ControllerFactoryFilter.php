@@ -60,9 +60,11 @@ class ControllerFactoryFilter extends ParentFactory
             return false;
         }
 
-        $controller = PipingBag::get($className);
-        $controller->setRequest($request);
-        $controller->response = $response;
-        return $controller;
+        $instance = PipingBag::get($className);
+        $instance->viewPath = null;
+        $instance->name = $controller;
+        $instance->setRequest($request);
+        $instance->response = $response;
+        return $instance;
     }
 }

@@ -3,8 +3,6 @@
 namespace PipingBag\Module;
 
 use Cake\Core\App;
-use Cake\Network\Request;
-use Cake\Network\Response;
 use Ray\Di\AbstractModule;
 
 class DefaultModule extends AbstractModule
@@ -34,10 +32,5 @@ class DefaultModule extends AbstractModule
 
             $this->install(new $class);
         }, $this->configuration);
-    }
-
-    public function add($foo)
-    {
-        $this->install($foo);
     }
 }
