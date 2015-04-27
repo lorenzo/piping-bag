@@ -2,15 +2,8 @@
     "name": "lorenzo/piping-bag",
     "description": "CakePHP 3 plugin for using Ray.Di as a Dependency Injection Container",
     "type": "cakephp-plugin",
-    "repositories": [
-        {
-        "type": "vcs",
-        "url": "https://github.com/koriym/Ray.Di.git"
-    }
-    ],
     "require": {
-        "cakephp/debug_kit": "~3.0",
-        "ray/di": "dev-compiler"
+        "ray/di": "^2.1"
     },
     "license": "MIT",
     "authors": [
