@@ -3,7 +3,7 @@
 This plugin adds the ability to configure object instances and their dependencies before they are used,
 and to store them into a container class to easy access.
 
-It uses the clean and flexible [Ray.Di Library](https://github.com/koriym/Ray.Di) which is a PHP dependency
+It uses the clean and flexible [Ray.Di Library](https://github.com/ray-di/Ray.Di) which is a PHP dependency
 injection framework in the style of "Google Guice".
 
 Ray.Di also allows you to program using `AOP`, that is, decorating the configured instances so some logic
