@@ -46,7 +46,7 @@ class PipingBag
         $modules = new DefaultModule($modules);
 
         if (empty(static::$instance)) {
-            $injector = new ScriptInjector(TMP);
+            $injector = new Injector($modules);
             static::container($injector);
             self::$modules = $modules;
         } else {
