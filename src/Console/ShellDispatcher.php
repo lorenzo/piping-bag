@@ -26,7 +26,7 @@ class ShellDispatcher extends BaseShellDispatcher
      * @param string $shortName The plugin-prefixed shell name
      * @return \Cake\Console\Shell A shell instance.
      */
-    protected function createShell($className, $shortName)
+    protected function _createShell($className, $shortName)
     {
         list($plugin) = pluginSplit($shortName);
         $instance = PipingBag::get($className);
