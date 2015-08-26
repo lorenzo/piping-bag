@@ -91,7 +91,7 @@ class MyModule extends AbstractModule
 ```
 
 Modules are, by convention, placed in your `src/Di/Module` folder. Read more about creating modules and
-how to bind instances to names in the [Official Ray.Di Docs](https://github.com/koriym/Ray.Di/tree/develop#getting-stated).
+how to bind instances to names in the [Official Ray.Di Docs](https://github.com/ray-di/Ray.Di#getting-started).
 
 ## Usage
 
