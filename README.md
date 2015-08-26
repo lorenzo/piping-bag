@@ -43,8 +43,8 @@ Additionally, you can configure the modules to be used and caching options in yo
 
 ```php
 'PipingBag' => [
-	'modules' => ['MyWebModule', 'AnotherModule', 'APlugin.SuperModule'],
-	'cacheConfig' => 'default'
+    'modules' => ['MyWebModule', 'AnotherModule', 'APlugin.SuperModule'],
+    'cacheConfig' => 'default'
 ]
 ```
 
@@ -52,8 +52,8 @@ Modules can also be returned as instances in the configuration array:
 
 ```php
 'PipingBag' => [
-	'modules' => [new App\Di\Module\MyWebModule()],
-	'cacheConfig' => 'default'
+    'modules' => [new App\Di\Module\MyWebModule()],
+    'cacheConfig' => 'default'
 ]
 ```
 
@@ -61,10 +61,10 @@ Finally, if you wish to tune your modules before they are registered, you can us
 
 ```php
 'PipingBag' => [
-	'modules' => function () {
-		return [new MyWebModule()];
-	},
-	'cacheConfig' => 'default'
+    'modules' => function () {
+        return [new MyWebModule()];
+    },
+    'cacheConfig' => 'default'
 ]
 ```
 
@@ -84,14 +84,14 @@ class MyModule extends AbstractModule
     public function configure()
     {
         $this->bind('MovieApp\FinderInterface')->to('MovieApp\Finder');
-		$this->bind('MovieApp\HttpClientInterface')->to('Guzzle\HttpClient');
-		$this->install(new OtherModule()); // Modules can install other modules
+        $this->bind('MovieApp\HttpClientInterface')->to('Guzzle\HttpClient');
+        $this->install(new OtherModule()); // Modules can install other modules
     }
 }
 ```
 
 Modules are, by convention, placed in your `src/Di/Module` folder. Read more about creating modules and
-how to bind instances to names in the [Official Ray.Di Docs](https://github.com/koriym/Ray.Di/tree/develop#getting-stated).
+how to bind instances to names in the [Official Ray.Di Docs](https://github.com/ray-di/Ray.Di#getting-started).
 
 ## Usage
 
