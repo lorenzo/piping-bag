@@ -73,8 +73,8 @@ class PipingBag
     /**
      * Return an instance of a class after resolving its dependencies.
      *
-     * @param $class The class name or interface name to load.
-     * @param $name The alias given to this class for namespacing the configuration.
+     * @param string $class The class name or interface name to load.
+     * @param string $name The alias given to this class for namespacing the configuration.
      * @return mixed
      */
     public static function get($class, $name = Name::ANY)
