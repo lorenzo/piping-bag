@@ -12,7 +12,7 @@ $cache = isset($config['cacheConfig']) ? $config['cacheConfig'] : 'default';
 
 AnnotationReader::addGlobalIgnoredName('triggers');
 AnnotationRegistry::registerFile(dirname(__DIR__) . '/src/Annotation/Assisted.php');
-$instance = Cache::read('pipingbag.instance');
+$instance = Cache::read('pipingbag.instance', $cache);
 
 if (!$instance) {
     $instance = PipingBag::create($modules);
