@@ -28,7 +28,7 @@ class DefaultModule extends AbstractModule
             $class = App::classname($module, 'Di/Module');
 
             if (!$class) {
-                throw new InvalidArgumentException('Invalid Di module name: ' . $module);
+                throw new \InvalidArgumentException('Invalid Di module name: ' . $module);
             }
 
             $this->install(new $class);
