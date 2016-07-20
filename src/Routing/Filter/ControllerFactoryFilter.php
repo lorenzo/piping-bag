@@ -61,7 +61,11 @@ class ControllerFactoryFilter extends ParentFactory
         }
 
         $instance = PipingBag::get($className);
-        $instance->viewPath = null;
+        if (method_exists($instance, 'viewBuilder')) {
+            $instance->viewBuilder();
+        } else {
+            $instance->viewPath = null;
+        }
         $instance->name = $controller;
         $instance->setRequest($request);
         $instance->response = $response;
