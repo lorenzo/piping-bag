@@ -13,10 +13,10 @@ class ShellDispatcher extends BaseShellDispatcher
      * @param array $argv The argv from PHP
      * @return int The exit code of the shell process.
      */
-    public static function run($argv)
+    public static function run($argv, $extra = [])
     {
         $dispatcher = new static($argv);
-        return $dispatcher->dispatch();
+        return $dispatcher->dispatch($extra);
     }
 
     /**
