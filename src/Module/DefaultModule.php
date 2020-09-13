@@ -1,13 +1,14 @@
 <?php
+declare(strict_types=1);
 
 namespace PipingBag\Module;
 
 use Cake\Core\App;
 use Ray\Di\AbstractModule;
+use InvalidArgumentException;
 
 class DefaultModule extends AbstractModule
 {
-
     protected $configuration;
 
     public function __construct(array $configuration)
@@ -16,7 +17,10 @@ class DefaultModule extends AbstractModule
         parent::__construct();
     }
 
-    protected function configure()
+    /**
+     * @return void
+     */
+    protected function configure() : void
     {
         $this->bind('Cake\Event\EventManager');
         $this->install(new AssistedModule);
@@ -28,7 +32,7 @@ class DefaultModule extends AbstractModule
             $class = App::classname($module, 'Di/Module');
 
             if (!$class) {
-                throw new \InvalidArgumentException('Invalid Di module name: ' . $module);
+                throw new InvalidArgumentException('Invalid Dependency Injection module name: ' . $module);
             }
 
             $this->install(new $class);

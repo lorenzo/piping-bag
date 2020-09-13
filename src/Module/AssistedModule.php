@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace PipingBag\Module;
 
@@ -7,7 +8,10 @@ use Ray\Di\AbstractModule;
 class AssistedModule extends AbstractModule
 {
 
-    protected function configure()
+    /**
+     * @return void
+     */
+    protected function configure() : void
     {
         // @Assisted
         $this->bindInterceptor(

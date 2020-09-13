@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace PipingBag\Cache;
 
@@ -24,7 +25,7 @@ class CacheAdapter extends CacheProvider
      *
      * @param string $configName The Cache config name to use.
      */
-    public function __construct($configName)
+    public function __construct(string $configName)
     {
         $this->config = $configName;
     }

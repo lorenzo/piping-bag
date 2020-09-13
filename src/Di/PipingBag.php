@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace PipingBag\Di;
 
@@ -35,9 +36,10 @@ class PipingBag
      *
      * @param array|callable $modules A list of modules to be installed. Or a callable
      * that will return the list of modules.
+     *
      * @return Injector
      */
-    public static function create($modules = [])
+    public static function create(array $modules = []) : Injector
     {
         if (is_callable($modules)) {
             $modules = (array)$modules();
@@ -60,6 +62,7 @@ class PipingBag
      * Get/Set the Injector instance.
      *
      * @param Injector $instance The injector to be used.
+     *
      * @return Injector
      */
     public static function container(InjectorInterface $instance = null)
@@ -75,16 +78,17 @@ class PipingBag
      *
      * @param string $class The class name or interface name to load.
      * @param string $name The alias given to this class for namespacing the configuration.
+     *
      * @return mixed
      */
-    public static function get($class, $name = Name::ANY)
+    public static function get(string $class, string $name = Name::ANY)
     {
         try {
             return static::container()->getInstance($class, $name);
         } catch (NotCompiled $e) {
-           $compiler = new DiCompiler(self::$modules, TMP);
-           $compiler->compile();
-           return $compiler->getInstance($class, $name);
+            $compiler = new DiCompiler(self::$modules, TMP);
+            $compiler->compile();
+            return $compiler->getInstance($class, $name);
         }
     }
 }

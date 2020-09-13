@@ -1,0 +1,18 @@
+<?php
+return [
+    'PipingBag' => [
+        'modules' => [
+            'FooModule',
+        ],
+        'Cache' => [
+            'name' => 'piping_bag',
+            'config' => [
+                'className' => 'Cake\Cache\Engine\FileEngine',
+                'prefix'    => 'foo_',
+                'path'      => PIPIN_BAG_CACHE,
+                'serialize' => true,
+                'duration' => '+2 hours',
+            ],
+        ],
+    ]
+];
