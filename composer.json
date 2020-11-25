@@ -1,6 +1,6 @@
 {
     "name": "lorenzo/piping-bag",
-    "description": "CakePHP 3 plugin for using Ray.Di as a Dependency Injection Container",
+    "description": "CakePHP 4 plugin for using Ray.Di as a Dependency Injection Container",
     "type": "cakephp-plugin",
     "require": {
         "ray/di": "^2.1"

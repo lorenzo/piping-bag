@@ -1,4 +1,4 @@
-# Dependency Injection Container Plugin for CakePHP 3
+# Dependency Injection Container Plugin for CakePHP 4
 
 This plugin adds the ability to configure object instances and their dependencies before they are used,
 and to store them into a container class to easy access.
@@ -20,24 +20,40 @@ composer require lorenzo/piping-bag=dev-master
 
 ## Configuration
 
-You will need to add the following line to your application's bootstrap.php file:
+### Upgrading from library version 1.x (Cake 3.x)
 
-```php
-Plugin::load('PipingBag', ['bootstrap' => true]);
-```
+**DEPRECATED:**
+- `ControllerFactoryFilter.php` for injecting controllers
+- `ShellDispatcher.php` for injecting shell classes
 
-For getting injection in your controllers to work you need to to replace the following line in your
+Remove the following lines in your:
 `config/bootstrap.php`:
 
 ```php
-DispatcherFactory::add('ControllerFactory');
+DispatcherFactory::add('PipingBag\Routing\Filter\ControllerFactoryFilter');
+Plugin::load('PipingBag', ['bootstrap' => true]);
 ```
 
-With the following:
+### Controller Injection
+
+For getting injection in your controllers to work you need to add the following line in the `bootstrap` method 
+of your `Application.php`:
 
 ```php
-DispatcherFactory::add('PipingBag\Routing\Filter\ControllerFactoryFilter');
+$this->addPlugin('PipingBag', ['bootstrap' => true]);
+$this->controllerFactory = new \PipingBag\Controller\DIControllerFactory();
 ```
+
+### Shell Injection
+
+For getting injection in your controllers to work you need to add the following line of your `bin/cake.php`:
+
+```php
+$commandFactory = new \PipingBag\Console\DICommandFactory();
+$runner = new CommandRunner(new Application(dirname(__DIR__) . '/config'), 'cake', $commandFactory);
+```
+
+___
 
 Additionally, you can configure the modules to be used and caching options in your `config/app.php` file.
 
