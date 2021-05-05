@@ -36,7 +36,7 @@ Plugin::load('PipingBag', ['bootstrap' => true]);
 
 ### Controller Injection
 
-For getting injection in your controllers to work you need to add the following line in the `bootstrap` method 
+For getting injection in your controllers to work you need to add the following line in the `bootstrap` method
 of your `Application.php`:
 
 ```php
@@ -95,6 +95,7 @@ natural way of grouping configurations. An example module looks like this:
 namespace App\Di\Module;
 
 use Ray\Di\AbstractModule;
+
 class MyModule extends AbstractModule
 {
     public function configure()
@@ -133,7 +134,6 @@ use Ray\Di\Di\Inject; // This is important
 
 class ArticlesController extends AppController
 {
-
     /**
      * @Inject
      */
@@ -162,7 +162,6 @@ use PipingBag\Annotation\Assisted; // This is important
 
 class ArticlesController extends AppController
 {
-
     /**
      * @Assisted
      */
@@ -181,15 +180,14 @@ to change the cake console executable to use PipingBag. Open your `bin/cake.php`
 it look like this:
 
 ```bash
-    // bin/cake.php
-    ...
-    exit(PipingBag\Console\ShellDispatcher::run($argv)); // Changed namespace of ShellDispatcher
+// bin/cake.php
+...
+exit(PipingBag\Console\ShellDispatcher::run($argv)); // Changed namespace of ShellDispatcher
 ```
 
 Then you can apply annotations to your shells:
 
 ```php
-
 use Cake\Console\Shell;
 use Ray\Di\Di\Inject; // This is important
 
@@ -202,6 +200,5 @@ class MyShell extends Shell
     {
         $this->httpClient = $connection;
     }
-
 }
 ```

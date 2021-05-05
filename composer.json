@@ -8,9 +8,9 @@
     "license": "MIT",
     "authors": [
         {
-        "name": "Jose Lorenzo Rodriguez",
-        "email": "jose.zap@gmail.com"
-    }
+            "name": "Jose Lorenzo Rodriguez",
+            "email": "jose.zap@gmail.com"
+        }
     ],
     "autoload": {
         "psr-4": {
