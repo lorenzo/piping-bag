@@ -19,6 +19,8 @@ if (!$instance) {
 }
 PipingBag::container($instance);
 
-register_shutdown_function(function () use ($instance, $cache) {
+register_shutdown_function(function () use ($cache) {
+    $instance = PipingBag::container();
+
     Cache::write('pipingbag.instance', $instance, $cache);
 });
