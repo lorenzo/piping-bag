@@ -1,5 +1,4 @@
 <?php
-
 namespace PipingBag\Module;
 
 use Cake\Core\App;

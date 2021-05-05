@@ -1,9 +1,9 @@
 <?php
 namespace PipingBag\Interceptor;
 
+use PipingBag\Di\PipingBag;
 use Ray\Aop\MethodInterceptor;
 use Ray\Aop\MethodInvocation;
-use PipingBag\Di\PipingBag;
 
 class AssistedInterceptor implements MethodInterceptor
 {
