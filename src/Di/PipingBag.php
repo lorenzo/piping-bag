@@ -2,15 +2,12 @@
 
 namespace PipingBag\Di;
 
-use Cake\Core\App;
 use PipingBag\Module\DefaultModule;
-use Ray\Di\AbstractModule;
 use Ray\Di\DiCompiler;
+use Ray\Di\Exception\NotCompiled;
+use Ray\Di\Injector;
 use Ray\Di\InjectorInterface;
 use Ray\Di\Name;
-use Ray\Di\ScriptInjector;
-use Ray\Di\Injector;
-use Ray\Di\Exception\NotCompiled;
 
 class PipingBag
 {
@@ -21,7 +18,6 @@ class PipingBag
      * @var InjectorInterface
      */
     protected static $instance;
-
 
     /**
      * The modules collection to install in the injector
